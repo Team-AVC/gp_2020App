@@ -3,52 +3,53 @@ package com.example.RestApp3.Models;
 
 import org.hibernate.annotations.Generated;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
+@Table(name = "SensorData")
 public class MyDataClass {
-
     @Id
     @GeneratedValue
-    private int id;
-    private String name;
-    private int value;
+    private int sigId;
+    private int sensorId;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
+    private String dataValue;
 
     public MyDataClass() {
     }
 
-    public int getId() {
-        return id;
+    public int getSensorId() {
+        return sensorId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSensorId(int sensorId) {
+        this.sensorId = sensorId;
     }
 
-    public String getName() {
-        return name;
+    public Date getDate() {
+        return date;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public int getValue() {
-        return value;
+    public String getDataValue() {
+        return dataValue;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setDataValue(String dataValue) {
+        this.dataValue = dataValue;
     }
 
     @Override
     public String toString() {
         return "MyDataClass{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", value=" + value +
+                "sensorId=" + sensorId +
+                ", date=" + date +
+                ", dataValue='" + dataValue + '\'' +
                 '}';
     }
 }
