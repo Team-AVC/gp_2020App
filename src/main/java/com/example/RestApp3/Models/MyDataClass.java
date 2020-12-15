@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "SensorData")
+@Table(name = "sensordata")
 public class MyDataClass {
     @Id
     @GeneratedValue
