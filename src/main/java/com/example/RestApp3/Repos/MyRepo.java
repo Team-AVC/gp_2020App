@@ -16,6 +16,6 @@ public interface MyRepo extends JpaRepository<MyDataClass,Integer> {
     public List<MyDataClass>getInRange(int lower,int higher);
 
     @Query("from MyDataClass where sensorId=?1 order by date")
-    public List<MyDataClass>getSignalsOfSensor(int id);
+    public List<MyDataClass>getSignalsOfSensorId(int id);
 
 }

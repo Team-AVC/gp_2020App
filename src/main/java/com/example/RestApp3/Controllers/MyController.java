@@ -31,13 +31,22 @@ public class MyController {
         int lower=pair.getLower();
         int higher=pair.getHigher();
 
+        return dataRepo.getOutOfRange(lower,higher);
+    }
+
+    @RequestMapping("port/data/withingrange")
+    public List<MyDataClass> func8(MyPair pair){
+        int lower=pair.getLower();
+        int higher=pair.getHigher();
+
         return dataRepo.getInRange(lower,higher);
+
     }
 
     @RequestMapping("port/data/{sensorid}")
     public List<MyDataClass> func4(@PathVariable("sensorid")int id){
 
-        return dataRepo.getSignalsOfSensor(id);
+        return dataRepo.getSignalsOfSensorId(id);
     }
 
 
