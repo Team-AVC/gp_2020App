@@ -27,7 +27,7 @@ public class MyController {
     }
 
     @RequestMapping("port/data/outofrange")
-    public List<MyDataClass> func3(MyPair pair){
+    public List<MyDataClass> func3(@RequestBody MyPair pair){
         int lower=pair.getLower();
         int higher=pair.getHigher();
 
@@ -35,9 +35,11 @@ public class MyController {
     }
 
     @RequestMapping("port/data/withingrange")
-    public List<MyDataClass> func8(MyPair pair){
+    public List<MyDataClass> func8(@RequestBody MyPair pair){
         int lower=pair.getLower();
         int higher=pair.getHigher();
+
+        System.out.println("lower :"+lower+"\thigher :"+higher);
 
         return dataRepo.getInRange(lower,higher);
 

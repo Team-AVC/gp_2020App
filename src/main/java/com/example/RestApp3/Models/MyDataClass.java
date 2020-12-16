@@ -15,7 +15,7 @@ public class MyDataClass {
     private int sensorId;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    private String dataValue;
+    private int dataValue;
 
     public MyDataClass() {
     }
@@ -36,11 +36,11 @@ public class MyDataClass {
         this.date = date;
     }
 
-    public String getDataValue() {
+    public int getDataValue() {
         return dataValue;
     }
 
-    public void setDataValue(String dataValue) {
+    public void setDataValue(int dataValue) {
         this.dataValue = dataValue;
     }
 

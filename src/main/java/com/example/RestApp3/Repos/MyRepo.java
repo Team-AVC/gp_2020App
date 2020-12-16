@@ -9,13 +9,16 @@ import java.util.List;
 
 public interface MyRepo extends JpaRepository<MyDataClass,Integer> {
 
-    @Query("from MyDataClass where dataValue<?1 or dataValue>?2")
+    @Query("from MyDataClass where dataValue< ?1 or dataValue> ?2")
     public List<MyDataClass>getOutOfRange(int lower,int higher);
 
-    @Query("from MyDataClass where dataValue>?1 and dataValue<?2")
+    @Query("from MyDataClass where dataValue> ?1 and dataValue< ?2")
     public List<MyDataClass>getInRange(int lower,int higher);
 
-    @Query("from MyDataClass where sensorId=?1 order by date")
+    @Query("from MyDataClass where sensorId= ?1 order by date")
     public List<MyDataClass>getSignalsOfSensorId(int id);
+
+
+
 
 }
