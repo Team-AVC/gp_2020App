@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 
+import java.util.Date;
 import java.util.List;
 
 public interface MyRepo extends JpaRepository<MyDataClass,Integer> {
@@ -18,7 +19,8 @@ public interface MyRepo extends JpaRepository<MyDataClass,Integer> {
     @Query("from MyDataClass where sensorId= ?1 order by date")
     public List<MyDataClass>getSignalsOfSensorId(int id);
 
-
+    @Query("from MyDataClass where date> ?1 and date< ?2")
+    public List<MyDataClass> getWithingdate(Date d1,Date d2);
 
 
 }
