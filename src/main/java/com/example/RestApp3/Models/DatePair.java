@@ -3,30 +3,30 @@ package com.example.RestApp3.Models;
 import java.util.Date;
 
 public class DatePair {
-    private Date lowerdate;
-    private Date higherdate;
+    private String lowerdate;
+    private String higherdate;
 
     public DatePair() {
     }
 
-    public DatePair(Date lowerdate, Date higherdate) {
+    public DatePair(String lowerdate, String higherdate) {
         this.lowerdate = lowerdate;
         this.higherdate = higherdate;
     }
 
-    public Date getLowerdate() {
+    public String getLowerdate() {
         return lowerdate;
     }
 
-    public void setLowerdate(Date lowerdate) {
+    public void setLowerdate(String lowerdate) {
         this.lowerdate = lowerdate;
     }
 
-    public Date getHigherdate() {
+    public String getHigherdate() {
         return higherdate;
     }
 
-    public void setHigherdate(Date higherdate) {
+    public void setHigherdate(String higherdate) {
         this.higherdate = higherdate;
     }
 }

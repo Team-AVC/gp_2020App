@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 @RestController
@@ -31,7 +32,7 @@ public class MyController {
         return dataRepo.findAll();
     }
 
-    //events of out of range datavalues
+    //events of out of range temperature datavalues
     @RequestMapping("port/data/outofrange")
     public List<MyDataClass> func3(@RequestBody MyPair pair){
         int lower=pair.getLower();
@@ -40,7 +41,7 @@ public class MyController {
         return dataRepo.getOutOfRange(lower,higher);
     }
 
-    //events withing datavalue range
+    //events withing temperature datavalue range
     @RequestMapping("port/data/withingrange")
     public List<MyDataClass> func8(@RequestBody MyPair pair){
         int lower=pair.getLower();
@@ -79,12 +80,18 @@ public class MyController {
     //get events withing time period
     @RequestMapping("port/data/getwithingdate")
     public List<MyDataClass> func7(@RequestBody DatePair pair){
-        Date lower=pair.getLowerdate();
-        Date higher=pair.getHigherdate();
+        String lower=pair.getLowerdate();
+        String higher=pair.getHigherdate();
 
-        System.out.println("lower date: "+lower);
-        System.out.println("higher date: "+higher);
-        return dataRepo.getWithingdate(lower,higher);
+        try{
+            Date d1=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").parse(lower);
+            Date d2=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").parse(higher);
+            System.out.println("lower date: "+lower);
+            System.out.println("higher date: "+higher);
+            return dataRepo.getWithingdate(d1,d2);
+        }catch(Exception e){System.out.println(e); return null;}
+
+
     }
 
 }
