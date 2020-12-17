@@ -27,14 +27,14 @@ public class MyController {
 
     //get all data
     @RequestMapping("port/data")
-    public List<MyDataClass> func2(){
+    public List<MyDataClass> getAll(){
 
         return dataRepo.findAll();
     }
 
     //events of out of range temperature datavalues
     @RequestMapping("port/data/outofrange")
-    public List<MyDataClass> func3(@RequestBody MyPair pair){
+    public List<MyDataClass> outOfRange(@RequestBody MyPair pair){
         int lower=pair.getLower();
         int higher=pair.getHigher();
 
@@ -43,7 +43,7 @@ public class MyController {
 
     //events withing temperature datavalue range
     @RequestMapping("port/data/withingrange")
-    public List<MyDataClass> func8(@RequestBody MyPair pair){
+    public List<MyDataClass> withingRange(@RequestBody MyPair pair){
         int lower=pair.getLower();
         int higher=pair.getHigher();
 
@@ -55,7 +55,7 @@ public class MyController {
 
     //get datas of unique sensor
     @RequestMapping("port/data/{sensorid}")
-    public List<MyDataClass> func4(@PathVariable("sensorid")int id){
+    public List<MyDataClass> getUnique(@PathVariable("sensorid")int id){
 
         return dataRepo.getSignalsOfSensorId(id);
     }
@@ -63,7 +63,7 @@ public class MyController {
 
     //post data by parameters
     @RequestMapping("port/data/postdataparas")
-    public String func5(MyDataClass mydata){
+    public String postDataByParamtrs(MyDataClass mydata){
 
         dataRepo.save(mydata);
         return "Done save";
@@ -71,7 +71,7 @@ public class MyController {
 
     //postdata by request body
     @RequestMapping("port/data/postdatabody")
-    public String func6(@RequestBody MyDataClass data){
+    public String postDataRequestBody(@RequestBody MyDataClass data){
         dataRepo.save(data);
         return "Done save";
 
@@ -79,7 +79,7 @@ public class MyController {
 
     //get events withing time period
     @RequestMapping("port/data/getwithingdate")
-    public List<MyDataClass> func7(@RequestBody DatePair pair){
+    public List<MyDataClass> getWithingTimePeriod(@RequestBody DatePair pair){
         String lower=pair.getLowerdate();
         String higher=pair.getHigherdate();
 
