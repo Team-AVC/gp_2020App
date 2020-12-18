@@ -10,10 +10,14 @@ import java.util.Date;
 @Table(name = "sensordata")
 public class MyDataClass {
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="seq",
+            sequenceName = "id_seq",
+            initialValue = 1,
+            allocationSize = 1)
     private int sigId;
     private int sensorId;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date date;
     private int dataValue;
 
