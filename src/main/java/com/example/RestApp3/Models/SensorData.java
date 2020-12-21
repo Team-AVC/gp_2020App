@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "sensordata")
-public class MyDataClass {
+public class SensorData {
     @Id
 //    @GeneratedValue(generator = "seq", strategy = GenerationType.SEQUENCE)
 //    @SequenceGenerator(name="seq",
@@ -25,7 +25,7 @@ public class MyDataClass {
     private Date timestamp;
     private int dataValue;
 
-    public MyDataClass() {
+    public SensorData() {
     }
 
     public int getSensorId() {

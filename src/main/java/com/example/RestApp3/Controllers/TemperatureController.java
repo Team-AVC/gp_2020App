@@ -1,7 +1,7 @@
 package com.example.RestApp3.Controllers;
 
 import com.example.RestApp3.Models.DatePair;
-import com.example.RestApp3.Models.MyDataClass;
+import com.example.RestApp3.Models.SensorData;
 import com.example.RestApp3.Models.MyPair;
 import com.example.RestApp3.Repos.TemperatureRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,14 @@ public class TemperatureController {
 
     //get all data
     @RequestMapping("port/data")
-    public List<MyDataClass> getAll(){
+    public List<SensorData> getAll(){
 
         return dataRepo.findAll();
     }
 
     //events of out of range temperature datavalues
     @RequestMapping("port/data/outofrange")
-    public List<MyDataClass> outOfRange(@RequestBody MyPair pair){
+    public List<SensorData> outOfRange(@RequestBody MyPair pair){
         int lower=pair.getLower();
         int higher=pair.getHigher();
 
@@ -42,7 +42,7 @@ public class TemperatureController {
 
     //events withing temperature datavalue range
     @RequestMapping("port/data/withingrange")
-    public List<MyDataClass> withingRange(@RequestBody MyPair pair){
+    public List<SensorData> withingRange(@RequestBody MyPair pair){
         int lower=pair.getLower();
         int higher=pair.getHigher();
 
@@ -54,7 +54,7 @@ public class TemperatureController {
 
     //get datas of unique sensor
     @RequestMapping("port/data/{sensorid}")
-    public List<MyDataClass> getUnique(@PathVariable("sensorid")int id){
+    public List<SensorData> getUnique(@PathVariable("sensorid")int id){
 
         return dataRepo.getSignalsOfSensorId(id);
     }
@@ -62,7 +62,7 @@ public class TemperatureController {
 
     //post data by parameters
     @RequestMapping("port/data/postdataparas")
-    public String postDataByParamtrs(MyDataClass mydata){
+    public String postDataByParamtrs(SensorData mydata){
 
         dataRepo.save(mydata);
         return "Done save";
@@ -70,7 +70,7 @@ public class TemperatureController {
 
     //postdata by request body
     @RequestMapping("port/data/postdatabody")
-    public String postDataRequestBody(@RequestBody MyDataClass data){
+    public String postDataRequestBody(@RequestBody SensorData data){
         dataRepo.save(data);
         return "Done save";
 
@@ -78,7 +78,7 @@ public class TemperatureController {
 
     //get events withing time period
     @RequestMapping("port/data/getwithingdate")
-    public List<MyDataClass> getWithingTimePeriod(@RequestBody DatePair pair){
+    public List<SensorData> getWithingTimePeriod(@RequestBody DatePair pair){
         String lower=pair.getLowerdate();
         String higher=pair.getHigherdate();
 
