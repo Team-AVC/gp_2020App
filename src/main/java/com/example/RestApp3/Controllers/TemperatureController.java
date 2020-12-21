@@ -3,19 +3,18 @@ package com.example.RestApp3.Controllers;
 import com.example.RestApp3.Models.DatePair;
 import com.example.RestApp3.Models.MyDataClass;
 import com.example.RestApp3.Models.MyPair;
-import com.example.RestApp3.Repos.MyRepo;
+import com.example.RestApp3.Repos.TemperatureRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 @RestController
-public class MyController {
+public class TemperatureController {
 
     @Autowired
-    MyRepo dataRepo;
+    TemperatureRepo dataRepo;
 
 
     @RequestMapping("/")
