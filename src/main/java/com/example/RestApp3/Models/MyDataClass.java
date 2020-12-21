@@ -1,24 +1,28 @@
 package com.example.RestApp3.Models;
 
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
 @Table(name = "sensordata")
 public class MyDataClass {
     @Id
-    @GeneratedValue(generator = "seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="seq",
-            sequenceName = "id_seq",
-            initialValue = 1,
-            allocationSize = 1)
-    private int sigId;
+//    @GeneratedValue(generator = "seq", strategy = GenerationType.SEQUENCE)
+//    @SequenceGenerator(name="seq",
+//            sequenceName = "id_seq",
+//            initialValue = 1,
+//            allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long sigId;
     private int sensorId;
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timestamp;
     private int dataValue;
 
     public MyDataClass() {
@@ -33,11 +37,11 @@ public class MyDataClass {
     }
 
     public Date getDate() {
-        return date;
+        return timestamp;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.timestamp = timestamp;
     }
 
     public int getDataValue() {
@@ -52,7 +56,7 @@ public class MyDataClass {
     public String toString() {
         return "MyDataClass{" +
                 "sensorId=" + sensorId +
-                ", date=" + date +
+                ", date=" + timestamp +
                 ", dataValue='" + dataValue + '\'' +
                 '}';
     }
