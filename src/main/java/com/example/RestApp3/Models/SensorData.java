@@ -28,6 +28,22 @@ public class SensorData {
     public SensorData() {
     }
 
+    public long getSigId() {
+        return sigId;
+    }
+
+    public void setSigId(long sigId) {
+        this.sigId = sigId;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
     public int getSensorId() {
         return sensorId;
     }

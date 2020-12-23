@@ -13,12 +13,21 @@ public class DatabaseChecker {
     TemperatureRepo dataRepo;
     List<SensorData> sensorDatas=new ArrayList<>();
     SensorData data;
-    @Scheduled(cron = "*/20 * * * * *")
+    private long sigId=0;
+    private long preSigId=0;
+    @Scheduled(cron = "*/5 * * * * *")
     public void notifyTemp(){
         sensorDatas=dataRepo.findAll();
         data=sensorDatas.get(sensorDatas.size()-1);
-        if(data.getDataValue()>30){
-            System.out.println("Temperature Level is too high");
+        sigId=data.getSigId();
+        if(sigId!=preSigId) {
+            if (data.getDataValue() > 30) {
+                System.out.println("Temperature Level is too high");
+                System.out.println("Warning Email/SMS sent");
+            }else{
+                System.out.println("Temperature Level is normal");
+            }
+            preSigId=sigId;
         }
     }
 }
