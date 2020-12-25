@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Date;
 import java.util.List;
 
-public interface TemperatureRepo extends JpaRepository<SensorData,Integer> {
+public interface TemperatureRepo extends JpaRepository<SensorData,Long> {
 
     @Query("from SensorData where dataValue< ?1 or dataValue> ?2")
     public List<SensorData>getOutOfRange(int lower, int higher);
