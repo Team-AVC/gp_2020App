@@ -1,5 +1,7 @@
 package com.example.RestApp3.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -15,16 +17,20 @@ public class Sensor {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long sensorId;
     private String sensorName;
-    @OneToMany(mappedBy="Sensor")
+    @JsonManagedReference
+    @OneToMany(mappedBy="sensor")
     private List<SensorData> sensorDatas=new ArrayList<>();
-
+    @JsonManagedReference
+    @OneToMany(mappedBy="sensor")
+    private List<Alert> alertDatas=new ArrayList<>();
     public Sensor() {
     }
 
-    public Sensor(long sensorId, String sensorName, List<SensorData> sensorDatas) {
+    public Sensor(long sensorId, String sensorName, List<SensorData> sensorDatas, List<Alert> alertDatas) {
         this.sensorId = sensorId;
         this.sensorName = sensorName;
         this.sensorDatas = sensorDatas;
+        this.alertDatas = alertDatas;
     }
 
     public long getSensorId() {
@@ -49,5 +55,23 @@ public class Sensor {
 
     public void setSensorDatas(List<SensorData> sensorDatas) {
         this.sensorDatas = sensorDatas;
+    }
+
+    public List<Alert> getAlertDatas() {
+        return alertDatas;
+    }
+
+    public void setAlertDatas(List<Alert> alertDatas) {
+        this.alertDatas = alertDatas;
+    }
+
+    @Override
+    public String toString() {
+        return "Sensor{" +
+                "sensorId=" + sensorId +
+                ", sensorName='" + sensorName + '\'' +
+                ", sensorDatas=" + sensorDatas +
+                ", alertDatas=" + alertDatas +
+                '}';
     }
 }

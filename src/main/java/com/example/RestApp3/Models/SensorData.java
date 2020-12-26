@@ -1,6 +1,8 @@
 package com.example.RestApp3.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -20,17 +22,20 @@ public class SensorData {
 //            allocationSize = 1)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long sigId;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timestamp;
+    private long sensorId;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp timestamp;
     private int dataValue;
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "sensorId",referencedColumnName = "sensorId")
+    @JoinColumn(name = "sensId",referencedColumnName = "sensorId")
     private Sensor sensor;
     public SensorData() {
     }
 
-    public SensorData(long sigId, Date timestamp, int dataValue, Sensor sensor) {
+    public SensorData(long sigId, long sensorId, Timestamp timestamp, int dataValue, Sensor sensor) {
         this.sigId = sigId;
+        this.sensorId = sensorId;
         this.timestamp = timestamp;
         this.dataValue = dataValue;
         this.sensor = sensor;
@@ -44,11 +49,19 @@ public class SensorData {
         this.sigId = sigId;
     }
 
+    public long getSensorId() {
+        return sensorId;
+    }
+
+    public void setSensorId(long sensorId) {
+        this.sensorId = sensorId;
+    }
+
     public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -61,7 +74,7 @@ public class SensorData {
         this.sensor = sensor;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return timestamp;
     }
 
@@ -81,6 +94,7 @@ public class SensorData {
     public String toString() {
         return "SensorData{" +
                 "sigId=" + sigId +
+                ", sensorId=" + sensorId +
                 ", timestamp=" + timestamp +
                 ", dataValue=" + dataValue +
                 ", sensor=" + sensor +

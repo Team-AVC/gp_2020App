@@ -16,10 +16,10 @@ public interface TemperatureRepo extends JpaRepository<SensorData,Long> {
     @Query("from SensorData where dataValue> ?1 and dataValue< ?2")
     public List<SensorData>getInRange(int lower, int higher);
 
-    @Query("from SensorData where sensorId= ?1 order by date")
-    public List<SensorData>getSignalsOfSensorId(int id);
+    @Query("from SensorData where sensorId= ?1 order by timestamp")
+    public List<SensorData>getSignalsOfSensorId(long id);
 
-    @Query("from SensorData where date> ?1 and date< ?2")
+    @Query("from SensorData where timestamp> ?1 and timestamp< ?2")
     public List<SensorData> getWithingdate(Date d1, Date d2);
 
 
