@@ -57,7 +57,7 @@ public class SensorData {
         this.sensorId = sensorId;
     }
 
-    public Date getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
