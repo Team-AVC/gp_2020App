@@ -33,13 +33,13 @@ public class DatabaseChecker implements DatabaseCheckerRepo {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         if(sigId!=preSigId) {
             if (data.getDataValue() > 30) {
-                Alert alert=new Alert(sensor,"Temperature Level is too high",data.getTimestamp());
+                Alert alert=new Alert(data.getSensorId(), sensor,"Temperature Level is too high",data.getTimestamp());
                 alertRepo.save(alert);
                 System.out.println("Temperature Level is too high");
                 System.out.println("Warning Email/SMS sent");
             }else{
                 System.out.println("Temperature Level is normal");
-                Alert alert=new Alert(sensor,"Temperature Level is normal",data.getTimestamp());
+                Alert alert=new Alert(data.getSensorId(), sensor,"Temperature Level is normal",data.getTimestamp());
                 alertRepo.save(alert);
             }
             preSigId=sigId;

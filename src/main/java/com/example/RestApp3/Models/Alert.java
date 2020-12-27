@@ -16,6 +16,7 @@ public class Alert {
 //            allocationSize = 1)
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long alertId;
+    private long sensorId;
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "sensId",referencedColumnName = "sensorId")
@@ -26,7 +27,16 @@ public class Alert {
     public Alert() {
     }
 
-    public Alert(Sensor sensor, String aMessage, Timestamp timestamp) {
+    public Alert(long alertId, long sensorId, Sensor sensor, String aMessage, Timestamp timestamp) {
+        this.alertId = alertId;
+        this.sensorId = sensorId;
+        this.sensor = sensor;
+        this.aMessage = aMessage;
+        this.timestamp = timestamp;
+    }
+
+    public Alert(long sensorId, Sensor sensor, String aMessage, Timestamp timestamp) {
+        this.sensorId = sensorId;
         this.sensor = sensor;
         this.aMessage = aMessage;
         this.timestamp = timestamp;
@@ -52,6 +62,14 @@ public class Alert {
         return sensor;
     }
 
+    public long getSensorId() {
+        return sensorId;
+    }
+
+    public void setSensorId(long sensorId) {
+        this.sensorId = sensorId;
+    }
+
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
     }
@@ -68,8 +86,10 @@ public class Alert {
     public String toString() {
         return "Alert{" +
                 "alertId=" + alertId +
+                ", sensorId=" + sensorId +
                 ", sensor=" + sensor +
                 ", aMessage='" + aMessage + '\'' +
+                ", timestamp=" + timestamp +
                 '}';
     }
 }
