@@ -3,7 +3,7 @@ package com.example.RestApp3.Controllers;
 import com.example.RestApp3.Models.DatePair;
 import com.example.RestApp3.Models.SensorData;
 import com.example.RestApp3.Models.MyPair;
-import com.example.RestApp3.Repos.TemperatureRepo;
+import com.example.RestApp3.Repos.SensorReadingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class SensorReadingController {
 
     @Autowired
-    TemperatureRepo dataRepo;
+    SensorReadingRepo dataRepo;
 
 
     @RequestMapping("/data")

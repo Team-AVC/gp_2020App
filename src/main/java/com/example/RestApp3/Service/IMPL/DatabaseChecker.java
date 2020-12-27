@@ -4,7 +4,7 @@ import com.example.RestApp3.Models.Alert;
 import com.example.RestApp3.Models.Sensor;
 import com.example.RestApp3.Models.SensorData;
 import com.example.RestApp3.Repos.AlertRepo;
-import com.example.RestApp3.Repos.TemperatureRepo;
+import com.example.RestApp3.Repos.SensorReadingRepo;
 import com.example.RestApp3.Service.DatabaseCheckerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,7 +16,7 @@ import java.util.*;
 public class DatabaseChecker implements DatabaseCheckerRepo {
 
     @Autowired
-    TemperatureRepo dataRepo;
+    SensorReadingRepo dataRepo;
     @Autowired
     AlertRepo alertRepo;
     List<SensorData> sensorDatas=new ArrayList<>();
