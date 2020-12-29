@@ -17,6 +17,7 @@ public class Sensor {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long sensorId;
     private String sensorName;
+    private String symbol;
     @JsonManagedReference
     @OneToMany(mappedBy="sensor")
     private List<SensorData> sensorDatas=new ArrayList<>();
@@ -26,9 +27,10 @@ public class Sensor {
     public Sensor() {
     }
 
-    public Sensor(long sensorId, String sensorName, List<SensorData> sensorDatas, List<Alert> alertDatas) {
+    public Sensor(long sensorId, String sensorName, String symbol, List<SensorData> sensorDatas, List<Alert> alertDatas) {
         this.sensorId = sensorId;
         this.sensorName = sensorName;
+        this.symbol = symbol;
         this.sensorDatas = sensorDatas;
         this.alertDatas = alertDatas;
     }
@@ -65,11 +67,20 @@ public class Sensor {
         this.alertDatas = alertDatas;
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
     @Override
     public String toString() {
         return "Sensor{" +
                 "sensorId=" + sensorId +
                 ", sensorName='" + sensorName + '\'' +
+                ", symbol='" + symbol + '\'' +
                 ", sensorDatas=" + sensorDatas +
                 ", alertDatas=" + alertDatas +
                 '}';
