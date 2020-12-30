@@ -33,13 +33,13 @@ public class AlertGenerater implements AlertGeneratorRepo {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         if(sigId!=preSigId) {
             if (data.getDataValue() > sensor.getThreshold()) {
-                Alert alert=new Alert(data.getSensorId(), sensor, sensor.getSensorName() + " Level is too high",data.getTimestamp());
+                Alert alert=new Alert(data.getSensorId(), sensor, sensor.getSensorName() + " reading value is too high",data.getTimestamp());
                 alertRepo.save(alert);
-                System.out.println(sensor.getSensorName() +" Level is too high");
+                System.out.println(sensor.getSensorName() +" reading value is too high");
                 System.out.println("Warning Email/SMS sent");
             }else{
-                System.out.println(sensor.getSensorName() +" Level is normal");
-                Alert alert=new Alert(data.getSensorId(), sensor,sensor.getSensorName() + " Level is normal",data.getTimestamp());
+                System.out.println(sensor.getSensorName() +" reading value is normal");
+                Alert alert=new Alert(data.getSensorId(), sensor,sensor.getSensorName() + " reading value is normal",data.getTimestamp());
                 alertRepo.save(alert);
             }
             preSigId=sigId;
