@@ -5,7 +5,7 @@ import com.example.RestApp3.Models.Sensor;
 import com.example.RestApp3.Models.SensorData;
 import com.example.RestApp3.Repos.AlertRepo;
 import com.example.RestApp3.Repos.SensorReadingRepo;
-import com.example.RestApp3.Service.DatabaseCheckerRepo;
+import com.example.RestApp3.Service.AlertGeneratorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Timestamp;
 import java.util.*;
 @Component
-public class DatabaseChecker implements DatabaseCheckerRepo {
+public class AlertGenerater implements AlertGeneratorRepo {
 
     @Autowired
     SensorReadingRepo dataRepo;
@@ -33,13 +33,13 @@ public class DatabaseChecker implements DatabaseCheckerRepo {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         if(sigId!=preSigId) {
             if (data.getDataValue() > 30) {
-                Alert alert=new Alert(data.getSensorId(), sensor,"Temperature Level is too high",data.getTimestamp());
+                Alert alert=new Alert(data.getSensorId(), sensor, sensor.getSensorName() + " Level is too high",data.getTimestamp());
                 alertRepo.save(alert);
-                System.out.println("Temperature Level is too high");
+                System.out.println(sensor.getSensorName() +" Level is too high");
                 System.out.println("Warning Email/SMS sent");
             }else{
-                System.out.println("Temperature Level is normal");
-                Alert alert=new Alert(data.getSensorId(), sensor,"Temperature Level is normal",data.getTimestamp());
+                System.out.println(sensor.getSensorName() +" Level is normal");
+                Alert alert=new Alert(data.getSensorId(), sensor,sensor.getSensorName() + " Level is normal",data.getTimestamp());
                 alertRepo.save(alert);
             }
             preSigId=sigId;

@@ -1,5 +1,5 @@
 package com.example.RestApp3.Service;
 
-public interface DatabaseCheckerRepo {
+public interface AlertGeneratorRepo {
     public void notifyTemp();
 }
