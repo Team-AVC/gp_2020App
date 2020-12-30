@@ -18,6 +18,7 @@ public class Sensor {
     private long sensorId;
     private String sensorName;
     private String symbol;
+    private int threshold;
     @JsonManagedReference
     @OneToMany(mappedBy="sensor")
     private List<SensorData> sensorDatas=new ArrayList<>();
@@ -27,12 +28,21 @@ public class Sensor {
     public Sensor() {
     }
 
-    public Sensor(long sensorId, String sensorName, String symbol, List<SensorData> sensorDatas, List<Alert> alertDatas) {
+    public Sensor(long sensorId, String sensorName, String symbol, int threshold, List<SensorData> sensorDatas, List<Alert> alertDatas) {
         this.sensorId = sensorId;
         this.sensorName = sensorName;
         this.symbol = symbol;
+        this.threshold = threshold;
         this.sensorDatas = sensorDatas;
         this.alertDatas = alertDatas;
+    }
+
+    public int getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
     }
 
     public long getSensorId() {

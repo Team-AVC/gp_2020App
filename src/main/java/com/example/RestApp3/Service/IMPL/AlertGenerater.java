@@ -32,7 +32,7 @@ public class AlertGenerater implements AlertGeneratorRepo {
         sigId=data.getSigId();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         if(sigId!=preSigId) {
-            if (data.getDataValue() > 30) {
+            if (data.getDataValue() > sensor.getThreshold()) {
                 Alert alert=new Alert(data.getSensorId(), sensor, sensor.getSensorName() + " Level is too high",data.getTimestamp());
                 alertRepo.save(alert);
                 System.out.println(sensor.getSensorName() +" Level is too high");
